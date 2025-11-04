@@ -98,7 +98,18 @@
             return this._div;
         };
         title.update = function () {
-            this._div.innerHTML = '<h2>Turku tramline impact on service accessibility </h2>';
+			// Add a white box with text after the heading
+            this._div.innerHTML = `
+				<div style="
+					background-color: rgba(255,255,255,0.9);
+					padding: 10px 15px;
+					border-radius: 10px;
+					max-width: 350px;
+					line-height: 1.4;
+				">
+				<h2>Turku tramline impact on service accessibility </h2><p>This map shows how the planned tram line influences accessibility to wellbeing services across different socio-economic areas in Turku.</p>
+				</div>
+			`;
         };
         title.addTo(map);
         var abstract = new L.Control({'position':'bottomright'});
@@ -113,8 +124,17 @@
             abstract.show = function () {
                 this._div.classList.remove("abstract");
                 this._div.classList.add("abstractUncollapsed");
-                this._div.innerHTML = '??';
-        };
+				// Add map instructions box
+                this._div.innerHTML = `
+					<div class="map-instructions-box">
+						<h3>Instructions</h3>
+						<p>
+							KESKEN / Here you can write short guidance for the user — for example:
+							how to zoom in/out, how to toggle layers, or how to interpret colors and symbols on the map.
+						</p>
+					</div>
+				`;
+			};
         abstract.addTo(map);
 		
         var zoomControl = L.control.zoom({
